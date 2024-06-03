@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Available Cars - Rolls-Royce</title>
+    <!-- Add Bootstrap CSS CDN link -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #1a1a1a;
+            color: #ffffff;
+            font-family: Arial, sans-serif;
+        }
+        .car-card {
+            background-color: #333;
+            border: none;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        .car-card img {
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+            cursor: pointer;
+        }
+        .car-card .card-body {
+            padding: 20px;
+        }
+        .navbar {
+            margin-bottom: 20px;
+        }
+        .modal-content {
+            background-color: #1a1a1a;
+            border: none;
+            border-radius: 10px;
+        }
+        .modal-content video {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="mt-5">Available Cars</h1>
+        <div class="row">
+            <!-- Example Car 1 -->
+            <div class="col-md-4">
+                <div class="card car-card">
+                    <img src="panthom.jpg" class="card-img-top" alt="Rolls-Royce Phantom" data-bs-toggle="modal" data-bs-target="#carModal" data-video="2023">
+                    <div class="card-body">
+                        <h5 class="card-title">Rolls-Royce Phantom</h5>
+                        <p class="card-text">The epitome of luxury, the Rolls-Royce Phantom offers unparalleled comfort and performance. Equipped with a powerful V12 engine and the finest interior materials.</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Example Car 2 -->
+            <div class="col-md-4">
+                <div class="card car-card">
+                    <img src="ghost.jpg" class="card-img-top" alt="Rolls-Royce Ghost" data-bs-toggle="modal" data-bs-target="#carModal" data-video="ghost.mp4">
+                    <div class="card-body">
+                        <h5 class="card-title">Rolls-Royce Ghost</h5>
+                        <p class="card-text">The Rolls-Royce Ghost blends modern design with timeless luxury. Experience the smooth ride and advanced technology features in this exquisite vehicle.</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Example Car 3 -->
+            <div class="col-md-4">
+                <div class="card car-card">
+                    <img src="wraith.jpg" class="card-img-top" alt="Rolls-Royce Wraith" data-bs-toggle="modal" data-bs-target="#carModal" data-video="wraith.mp4">
+                    <div class="card-body">
+                        <h5 class="card-title">Rolls-Royce Wraith</h5>
+                        <p class="card-text">The Rolls-Royce Wraith is a powerful and elegant coupe designed for those who seek thrill and luxury. Its dynamic performance and opulent interior set it apart.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for video -->
+    <div class="modal fade" id="carModal" tabindex="-1" aria-labelledby="carModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="carModalLabel">Car Video</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <video controls id="carVideo" class="w-100" style="border-radius: 10px;">
+                        <source src="2024 Rolls Royce Spectre - New Brutal Luxury Coupe by MANSORY.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Bootstrap JS and Popper.js CDN links -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+
+    <script>
+        const carModal = document.getElementById('carModal');
+        carModal.addEventListener('show.bs.modal', function (event) {
+            const button = event.relatedTarget;
+            const videoSrc = button.getAttribute('data-video');
+            const modalVideo = carModal.querySelector('#carVideo source');
+            modalVideo.src = videoSrc;
+            const video = carModal.querySelector('#carVideo');
+            video.load();
+        });
+
+        carModal.addEventListener('hide.bs.modal', function () {
+            const video = carModal.querySelector('#carVideo');
+            video.pause();
+            video.currentTime = 0;
+        });
+    </script>
+</body>
+</html>
